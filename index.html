@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Precifica Fácil</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#39d98a;--bg:#080d0a;--card:#0e1512;--card2:#121a15;--border:rgba(57,217,138,0.12);--border2:rgba(255,255,255,0.06);--text:#e8f5ee;--muted:#5a7a66;--danger:#f05050;--warning:#f5c842;--success:#39d98a;--radius:12px;--sw:240px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.02em}
+.gt{background:linear-gradient(135deg,#52f0a0,#25c46e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.gb{background:linear-gradient(135deg,#39d98a,#25b36e);color:#07120c;font-weight:700;border:none;padding:10px 20px;border-radius:8px;font-size:14px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.gb:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(57,217,138,0.4)}
+.ng{box-shadow:0 0 18px rgba(57,217,138,0.3),0 0 36px rgba(57,217,138,0.1)}
+.card{background:var(--card);border:1px solid var(--border2);border-radius:var(--radius)}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.bs{background:rgba(57,217,138,0.12);color:var(--success)}
+.bd{background:rgba(240,80,80,0.12);color:var(--danger)}
+.bw{background:rgba(245,200,66,0.1);color:var(--warning)}
+.bm{background:rgba(90,122,102,0.18);color:var(--muted)}
+.bv{background:linear-gradient(135deg,rgba(57,217,138,0.2),rgba(37,180,110,0.2));color:#52f0a0;border:1px solid rgba(57,217,138,0.3)}
+.inp{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(--border2);border-radius:8px;padding:9px 13px;color:var(--text);font-size:14px;outline:none;transition:border-color .2s;font-family:'DM Sans',sans-serif}
+.inp:focus{border-color:rgba(57,217,138,0.4)}
+.lbl{display:block;font-size:12px;color:var(--muted);margin-bottom:5px;font-weight:500}
+.bo{background:transparent;border:1px solid var(--border2);color:var(--text);padding:9px 16px;border-radius:8px;font-size:14px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.bo:hover{border-color:rgba(57,217,138,0.3);color:var(--primary)}
+.bg{background:transparent;border:none;color:var(--muted);padding:7px 10px;border-radius:8px;font-size:14px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.bg:hover{background:rgba(255,255,255,0.05);color:var(--text)}
+.al{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;border-radius:8px;font-size:13px}
+.aw{background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.2);color:#f5d76b}
+.as{background:rgba(57,217,138,0.08);border:1px solid rgba(57,217,138,0.2);color:#52f0a0}
+.ai{background:rgba(57,217,138,0.06);border:1px solid rgba(57,217,138,0.15);color:var(--primary)}
+.ad{background:rgba(240,80,80,0.08);border:1px solid rgba(240,80,80,0.2);color:#f07070}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;padding:11px 16px;color:var(--muted);font-size:12px;font-weight:600;border-bottom:1px solid var(--border2)}
+td{padding:12px 16px;font-size:13px;border-bottom:1px solid rgba(255,255,255,0.03)}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(255,255,255,0.015)}
+select.inp{appearance:none;cursor:pointer}
+#app{display:flex;min-height:100vh}
+#sb{width:var(--sw);background:rgba(8,13,10,0.95);border-right:1px solid var(--border);position:fixed;top:0;left:0;height:100vh;display:flex;flex-direction:column;z-index:100}
+#sblogo{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;height:58px}
+.lico{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#39d98a,#25b36e);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+#nav{flex:1;padding:10px 8px;overflow-y:auto}
+.ni{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:8px;cursor:pointer;transition:all .15s;color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;margin-bottom:2px;border-left:2px solid transparent;white-space:nowrap;overflow:hidden;background:none;border-right:none;border-top:none;border-bottom:none;width:100%;text-align:left}
+.ni:hover{background:rgba(255,255,255,0.04);color:var(--text)}
+.ni.active{background:rgba(57,217,138,0.1);color:var(--primary);border-left-color:var(--primary)}
+.ni svg{width:18px;height:18px;flex-shrink:0}
+#sbft{padding:10px 8px;border-top:1px solid var(--border)}
+#main{flex:1;margin-left:var(--sw)}
+#page{padding:24px;max-width:1200px;padding-bottom:100px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tw{overflow-x:auto}
+#tc{position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:8px}
+.toast{padding:12px 18px;border-radius:10px;font-size:13px;font-weight:500;animation:sli .25s ease;box-shadow:0 8px 24px rgba(0,0,0,0.4)}
+.ts{background:#0d2417;border:1px solid rgba(57,217,138,0.3);color:#52f0a0}
+.te{background:#220e0e;border:1px solid rgba(240,80,80,0.3);color:#f07070}
+@keyframes sli{from{transform:translateX(100px);opacity:0}to{transform:none;opacity:1}}
+#rb{display:none;position:fixed;top:0;left:0;right:0;z-index:200;background:linear-gradient(90deg,rgba(245,200,66,0.15),rgba(245,200,66,0.08));border-bottom:1px solid rgba(245,200,66,0.3);padding:10px 20px;align-items:center;justify-content:center;gap:12px}
+.pc{padding:18px}
+.pv{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700}
+.pl{font-size:12px;color:var(--muted);margin-top:2px}
+input[type=range]{-webkit-appearance:none;width:100%;height:5px;border-radius:3px;background:rgba(255,255,255,0.1);outline:none;cursor:pointer}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--primary);cursor:pointer}
+#landing{min-height:100vh;display:flex;flex-direction:column;position:relative;overflow:hidden}
+#galaxy{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#landing>*{position:relative;z-index:1}
+#lhdr{display:flex;align-items:center;justify-content:space-between;padding:14px 32px;border-bottom:1px solid var(--border)}
+#lmain{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 32px}
+.lg{display:grid;grid-template-columns:1fr 1fr;gap:64px;max-width:1100px;width:100%}
+.fc{background:var(--card);border:1px solid var(--border2);border-radius:10px;padding:14px}
+.ab{background:var(--card);border:1px solid var(--border2);border-radius:18px;padding:32px}
+.at{display:flex;gap:8px;margin-bottom:28px}
+.atb{flex:1;padding:9px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.atb.active{background:linear-gradient(135deg,#39d98a,#25b36e);color:#07120c}
+.atb:not(.active){background:rgba(255,255,255,0.05);color:var(--muted)}
+.ec{cursor:pointer;padding:4px 6px;border-radius:4px;transition:background .15s}
+.ec:hover{background:rgba(57,217,138,0.06);color:var(--primary)}
+.ei{background:rgba(57,217,138,0.08);border:1px solid rgba(57,217,138,0.4);border-radius:4px;padding:3px 8px;color:var(--text);font-size:13px;outline:none;width:100%;min-width:70px;font-family:'DM Sans',sans-serif}
+.pv-{animation:fu .2s ease}
+@keyframes fu{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.msg{max-width:85%;display:flex;flex-direction:column;gap:4px}
+.mu{align-self:flex-end;align-items:flex-end}
+.ma{align-self:flex-start;align-items:flex-start}
+.mb{padding:11px 16px;border-radius:14px;font-size:13.5px;line-height:1.55}
+.mu .mb{background:linear-gradient(135deg,rgba(57,217,138,0.2),rgba(57,217,138,0.1));border:1px solid rgba(57,217,138,0.2)}
+.ma .mb{background:var(--card2);border:1px solid var(--border2)}
+.td{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--muted);animation:bl 1.2s infinite}
+.td:nth-child(2){animation-delay:.2s}.td:nth-child(3){animation-delay:.4s}
+@keyframes bl{0%,100%{opacity:.3}50%{opacity:1}}
+.pc2{border-radius:16px;padding:24px;position:relative;background:var(--card);border:1px solid var(--border2);transition:all .2s}
+.pc2.ft{border-color:rgba(57,217,138,0.4);box-shadow:0 0 30px rgba(57,217,138,0.1)}
+.pb2{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#39d98a,#25b36e);color:#07120c;font-size:11px;font-weight:700;padding:4px 14px;border-radius:20px;white-space:nowrap}
+#mn{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(8,13,10,0.97);border-top:1px solid var(--border);z-index:200;padding:6px 0 8px;backdrop-filter:blur(12px)}
+@media(max-width:600px){#sb{display:none}#main{margin-left:0}.g4,.g3,.g2{grid-template-columns:1fr}#page{padding:16px;padding-bottom:90px}#mn{display:flex}}
+.mni{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 2px;cursor:pointer;color:var(--muted);border:none;background:none;font-size:9px;font-weight:600;transition:all .15s}
+.mni.active{color:var(--primary)}
+.mni svg{width:20px;height:20px}
+</style>
+</head>
+<body>
+<script>const BACKEND_URL='https://precifica-facil-backend-production.up.railway.app';const OWNER_EMAILS=['raphaelguastaferro015@gmail.com'];</script>
+<div id="tc"></div>
+<div id="rb">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#f5c842" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+  <span style="color:#f5d76b;font-size:13px;font-weight:600">Plano vencido — <strong>modo leitura</strong>.</span>
+  <button class="gb" style="padding:6px 14px;font-size:12px" onclick="nav('planos')">Renovar</button>
+</div>
+
+<div id="app" style="display:none">
+  <aside id="sb">
+    <div id="sblogo">
+      <div class="lico ng"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#07120c" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700"><span class="gt">Precifica</span><span> Fácil</span></div>
+    </div>
+    <nav id="nav">
+      <button class="ni" data-p="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</button>
+      <button class="ni" data-p="pricing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>Precificação</button>
+      <button class="ni" data-p="products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Produtos</button>
+      <button class="ni" data-p="cashflow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Fluxo de Caixa</button>
+      <button class="ni" data-p="smartsheet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="9" x2="9" y2="21"/></svg>Planilha</button>
+      <button class="ni" data-p="reports"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Relatórios</button>
+      <button class="ni" data-p="ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Assistente IA</button>
+      <button class="ni" data-p="planos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Meu Plano</button>
+    </nav>
+    <div id="sbft">
+      <button class="ni" data-p="profile" style="margin-bottom:4px">
+        <div id="ua" style="width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#39d98a,#25b36e);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#07120c;flex-shrink:0"></div>
+        <div style="min-width:0">
+          <div id="sbn" style="font-size:12px;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></div>
+          <div id="sbp" style="font-size:10px;margin-top:1px"></div>
+        </div>
+      </button>
+      <button class="bg" style="width:100%;justify-content:start;font-size:12px" onclick="logout()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sair
+      </button>
+    </div>
+  </aside>
+  <div id="main"><div id="page"></div></div>
+  <nav id="mn">
+    <button class="mni" onclick="nav('dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Início</button>
+    <button class="mni" onclick="nav('pricing')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>Preço</button>
+    <button class="mni" onclick="nav('products')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Produtos</button>
+    <button class="mni" onclick="nav('cashflow')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Caixa</button>
+    <button class="mni" onclick="nav('ai')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>IA</button>
+    <button class="mni" onclick="nav('reports')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Relatórios</button>
+    <button class="mni" onclick="nav('planos')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Plano</button>
+  </nav>
+</div>
+
+<div id="landing">
+  <header id="lhdr" style="display:none"></header>
+    <main id="lmain" style="display:block;padding:0">
+
+    <!-- HEADER FIXO COM BOTÕES -->
+    <div style="position:sticky;top:0;z-index:99;background:rgba(8,13,10,0.95);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);padding:12px 32px;display:flex;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div class="lico ng" style="width:32px;height:32px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#07120c" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700"><span class="gt">Precifica</span> Fácil</div>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button onclick="abrirLogin()" style="background:transparent;border:1px solid var(--border2);color:var(--text);padding:8px 20px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='rgba(57,217,138,0.4)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.06)'">Entrar</button>
+        <button onclick="abrirCadastro()" class="gb" style="padding:8px 20px;font-size:13px">Criar Conta</button>
+      </div>
+    </div>
+
+    <!-- MODAL LOGIN/CADASTRO -->
+    <div id="auth-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:999;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px)">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:20px;padding:32px;width:100%;max-width:420px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px">
+          <h3 style="font-size:18px;font-weight:700" id="modal-title">Entrar</h3>
+          <button onclick="fecharAuth()" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:20px;line-height:1">×</button>
+        </div>
+        <div class="at" style="margin-bottom:24px">
+          <button class="atb active" id="tl" onclick="stab('login')">Entrar</button>
+          <button class="atb" id="ts" onclick="stab('signup')">Criar Conta</button>
+        </div>
+        <div id="lf">
+          <div id="le" style="display:none;margin-bottom:14px" class="al ad"></div>
+          <div style="margin-bottom:14px"><label class="lbl">Email</label><input class="inp" type="email" id="li-e" placeholder="seu@email.com"></div>
+          <div style="margin-bottom:6px"><label class="lbl">Senha</label>
+            <div style="position:relative">
+              <input class="inp" type="password" id="li-p" placeholder="••••••••" style="padding-right:40px" onkeydown="if(event.key==='Enter')doLogin()">
+              <button onclick="tp('li-p')" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+          </div>
+          <button class="gb" style="width:100%;justify-content:center;margin-top:20px" id="bl" onclick="doLogin()">Entrar <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+        <div id="sf" style="display:none">
+          <div style="margin-bottom:14px"><label class="lbl">Email</label><input class="inp" type="email" id="su-e" placeholder="seu@email.com"></div>
+          <div style="margin-bottom:14px"><label class="lbl">Nome</label><input class="inp" type="text" id="su-n" placeholder="Seu nome"></div>
+          <div style="margin-bottom:14px"><label class="lbl">Senha</label>
+            <div style="position:relative">
+              <input class="inp" type="password" id="su-p" placeholder="••••••••" style="padding-right:40px" oninput="upw()">
+              <button onclick="tp('su-p')" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+            </div>
+            <div style="display:flex;gap:4px;margin-top:6px">
+              <div id="pb1" style="height:5px;flex:1;border-radius:3px;background:rgba(255,255,255,0.1)"></div>
+              <div id="pb2" style="height:5px;flex:1;border-radius:3px;background:rgba(255,255,255,0.1)"></div>
+              <div id="pb3" style="height:5px;flex:1;border-radius:3px;background:rgba(255,255,255,0.1)"></div>
+              <div id="pb4" style="height:5px;flex:1;border-radius:3px;background:rgba(255,255,255,0.1)"></div>
+            </div>
+            <div id="ph" style="font-size:11px;margin-top:4px;color:var(--muted)"></div>
+          </div>
+          <div style="margin-bottom:6px"><label class="lbl">Confirmar Senha</label><input class="inp" type="password" id="su-c" placeholder="••••••••" onkeydown="if(event.key==='Enter')doSignup()"></div>
+          <button class="gb" style="width:100%;justify-content:center;margin-top:20px" onclick="doSignup()">Criar Conta</button>
+        </div>
+        <p style="text-align:center;font-size:11px;color:var(--muted);margin-top:16px">🔒 Dados seguros e nunca compartilhados</p>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <section style="padding:90px 32px 70px;text-align:center;max-width:860px;margin:0 auto">
+      <div style="display:inline-flex;align-items:center;gap:8px;padding:6px 16px;border-radius:20px;background:rgba(57,217,138,0.08);border:1px solid rgba(57,217,138,0.2);color:var(--primary);font-size:12px;font-weight:700;margin-bottom:28px;letter-spacing:.5px">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        MAIS DE 1.200 EMPREENDEDORES JÁ USAM
+      </div>
+      <h1 style="font-size:56px;font-weight:900;line-height:1.1;margin-bottom:24px;letter-spacing:-1px">
+        Você sabe quanto<br><span class="gt">realmente lucra</span><br>em cada venda?
+      </h1>
+      <p style="color:var(--muted);font-size:18px;line-height:1.8;max-width:580px;margin:0 auto 36px">
+        A maioria dos empreendedores <strong style="color:var(--text)">acha que está lucrando</strong> — mas na verdade está perdendo dinheiro sem saber. O Precifica Fácil revela a verdade sobre cada produto.
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">
+        <button class="gb" style="padding:16px 32px;font-size:16px;border-radius:10px" onclick="document.getElementById('planos-section').scrollIntoView({behavior:'smooth'})">
+          Acessar o Precifica Fácil →
+        </button>
+        <button onclick="abrirLogin()" style="background:transparent;border:1px solid var(--border2);color:var(--text);padding:16px 32px;border-radius:10px;font-size:16px;cursor:pointer;font-family:'DM Sans',sans-serif">Já tenho acesso</button>
+      </div>
+      <div style="display:flex;gap:28px;justify-content:center;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Sem cartão de crédito</div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Setup em 2 minutos</div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>7 dias de garantia</div>
+      </div>
+    </section>
+
+    <!-- MOCKUP -->
+    <section style="padding:0 32px 80px;max-width:900px;margin:0 auto">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.5)">
+        <div style="background:#0a0f0c;padding:10px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px">
+          <div style="width:10px;height:10px;border-radius:50%;background:#f05050"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#f5c842"></div>
+          <div style="width:10px;height:10px;border-radius:50%;background:#39d98a"></div>
+          <div style="flex:1;text-align:center;font-size:11px;color:var(--muted)">precifica-facil-br.netlify.app</div>
+        </div>
+        <div style="padding:20px;background:#080d0a">
+          <div style="font-size:14px;font-weight:700;margin-bottom:16px">Olá, João 👋 <span style="color:var(--muted);font-weight:400">— Resumo financeiro</span></div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px">
+            <div style="background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:12px"><div style="font-size:16px;font-weight:800;color:var(--primary)">R$ 12.480</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Receita Total</div></div>
+            <div style="background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:12px"><div style="font-size:16px;font-weight:800;color:var(--success)">R$ 4.320</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Lucro</div></div>
+            <div style="background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:12px"><div style="font-size:16px;font-weight:800;color:var(--danger)">R$ 8.160</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Despesas</div></div>
+            <div style="background:var(--card);border:1px solid rgba(57,217,138,0.3);border-radius:8px;padding:12px"><div style="font-size:16px;font-weight:800;color:var(--primary)">34.6%</div><div style="font-size:10px;color:var(--muted);margin-top:2px">Margem Média</div></div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border2);border-radius:8px;padding:12px">
+            <div style="font-size:10px;font-weight:700;margin-bottom:10px;color:var(--muted);letter-spacing:1px">PRODUTOS MAIS LUCRATIVOS</div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><div style="font-size:11px;color:var(--muted);width:100px">Camiseta Básica</div><div style="flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden"><div style="height:100%;width:85%;background:linear-gradient(90deg,#39d98a,#25b36e);border-radius:3px"></div></div><div style="font-size:11px;color:var(--success);width:65px;text-align:right;font-weight:700">R$ 1.840</div></div>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><div style="font-size:11px;color:var(--muted);width:100px">Calça Jeans</div><div style="flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden"><div style="height:100%;width:65%;background:linear-gradient(90deg,#39d98a,#25b36e);border-radius:3px"></div></div><div style="font-size:11px;color:var(--success);width:65px;text-align:right;font-weight:700">R$ 1.320</div></div>
+            <div style="display:flex;align-items:center;gap:10px"><div style="font-size:11px;color:var(--muted);width:100px">Tênis Casual</div><div style="flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden"><div style="height:100%;width:48%;background:linear-gradient(90deg,#39d98a,#25b36e);border-radius:3px"></div></div><div style="font-size:11px;color:var(--success);width:65px;text-align:right;font-weight:700">R$ 980</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOR -->
+    <section style="padding:70px 32px;background:rgba(240,80,80,0.03);border-top:1px solid rgba(240,80,80,0.08);border-bottom:1px solid rgba(240,80,80,0.08)">
+      <div style="max-width:800px;margin:0 auto;text-align:center">
+        <h2 style="font-size:36px;font-weight:900;margin-bottom:12px">Você se identifica com isso? 👇</h2>
+        <p style="color:var(--muted);font-size:15px;margin-bottom:40px">Se você marcou pelo menos um, o Precifica Fácil foi feito para você.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div style="background:rgba(240,80,80,0.06);border:1px solid rgba(240,80,80,0.15);border-radius:10px;padding:16px;font-size:14px;text-align:left;line-height:1.5">❌ Vendo bastante mas o dinheiro não sobra no fim do mês</div>
+          <div style="background:rgba(240,80,80,0.06);border:1px solid rgba(240,80,80,0.15);border-radius:10px;padding:16px;font-size:14px;text-align:left;line-height:1.5">❌ Não sabe se seus preços cobrem todos os custos reais</div>
+          <div style="background:rgba(240,80,80,0.06);border:1px solid rgba(240,80,80,0.15);border-radius:10px;padding:16px;font-size:14px;text-align:left;line-height:1.5">❌ Tem medo de aumentar o preço e perder clientes</div>
+          <div style="background:rgba(240,80,80,0.06);border:1px solid rgba(240,80,80,0.15);border-radius:10px;padding:16px;font-size:14px;text-align:left;line-height:1.5">❌ Calcula o preço "no feeling" sem saber a margem real</div>
+          <div style="background:rgba(240,80,80,0.06);border:1px solid rgba(240,80,80,0.15);border-radius:10px;padding:16px;font-size:14px;text-align:left;line-height:1.5">❌ Descobre que estava no prejuízo só quando é tarde demais</div>
+          <div style="background:rgba(240,80,80,0.06);border:1px solid rgba(240,80,80,0.15);border-radius:10px;padding:16px;font-size:14px;text-align:left;line-height:1.5">❌ Não tem controle do fluxo de caixa do negócio</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFÍCIOS -->
+    <section style="padding:80px 32px">
+      <div style="max-width:900px;margin:0 auto">
+        <div style="text-align:center;margin-bottom:52px">
+          <h2 style="font-size:38px;font-weight:900;margin-bottom:14px">Tudo que você precisa para <span class="gt">lucrar de verdade</span></h2>
+          <p style="color:var(--muted);font-size:16px;max-width:500px;margin:0 auto">Uma plataforma completa para tomar decisões financeiras inteligentes</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div style="background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:24px">
+            <div style="font-size:32px;margin-bottom:12px">⚡</div>
+            <div style="font-size:16px;font-weight:700;margin-bottom:8px">Precificação Inteligente</div>
+            <div style="font-size:14px;color:var(--muted);line-height:1.7">Calcule o preço ideal considerando custo, frete, taxas, anúncios e a margem que você quer ter. Nunca mais chute o preço.</div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:24px">
+            <div style="font-size:32px;margin-bottom:12px">📊</div>
+            <div style="font-size:16px;font-weight:700;margin-bottom:8px">Dashboard Financeiro</div>
+            <div style="font-size:14px;color:var(--muted);line-height:1.7">Veja em tempo real sua receita, despesas, lucro e margem. Tudo em um único painel fácil de entender.</div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:24px">
+            <div style="font-size:32px;margin-bottom:12px">🤖</div>
+            <div style="font-size:16px;font-weight:700;margin-bottom:8px">Assistente IA</div>
+            <div style="font-size:14px;color:var(--muted);line-height:1.7">Consultor financeiro inteligente que analisa seus dados e responde dúvidas sobre precificação e lucratividade.</div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:24px">
+            <div style="font-size:32px;margin-bottom:12px">📋</div>
+            <div style="font-size:16px;font-weight:700;margin-bottom:8px">Planilha Inteligente</div>
+            <div style="font-size:14px;color:var(--muted);line-height:1.7">Simule diferentes cenários de precificação e compare múltiplos produtos de forma visual e interativa.</div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:24px">
+            <div style="font-size:32px;margin-bottom:12px">💰</div>
+            <div style="font-size:16px;font-weight:700;margin-bottom:8px">Fluxo de Caixa</div>
+            <div style="font-size:14px;color:var(--muted);line-height:1.7">Registre entradas e saídas, veja seu saldo atualizado e identifique onde seu dinheiro está indo.</div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:24px">
+            <div style="font-size:32px;margin-bottom:12px">📈</div>
+            <div style="font-size:16px;font-weight:700;margin-bottom:8px">Relatórios Detalhados</div>
+            <div style="font-size:14px;color:var(--muted);line-height:1.7">Analise quais produtos dão mais lucro, quais têm melhor margem e onde você precisa melhorar.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section style="padding:70px 32px;background:rgba(57,217,138,0.02);border-top:1px solid var(--border)">
+      <div style="max-width:900px;margin:0 auto">
+        <h2 style="font-size:36px;font-weight:900;text-align:center;margin-bottom:48px">O que nossos clientes dizem 💬</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px">
+          <div style="background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:22px">
+            <div style="color:#f5c842;font-size:14px;margin-bottom:12px">★★★★★</div>
+            <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px">"Descobri que estava vendendo 3 produtos no prejuízo há 6 meses. Em uma semana ajustei os preços e aumentei meu lucro em 40%."</p>
+            <div style="font-size:14px;font-weight:700">Mariana S.</div>
+            <div style="font-size:12px;color:var(--muted)">Loja de roupas — SP</div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:22px">
+            <div style="color:#f5c842;font-size:14px;margin-bottom:12px">★★★★★</div>
+            <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px">"Antes calculava tudo no caderno e sempre errava. Agora sei exatamente minha margem em cada produto. Indispensável!"</p>
+            <div style="font-size:14px;font-weight:700">Carlos M.</div>
+            <div style="font-size:12px;color:var(--muted)">Revenda — MG</div>
+          </div>
+          <div style="background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:22px">
+            <div style="color:#f5c842;font-size:14px;margin-bottom:12px">★★★★★</div>
+            <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px">"O assistente IA me surpreendeu. Ele analisou meus produtos e me deu sugestões que eu nunca teria pensado sozinha."</p>
+            <div style="font-size:14px;font-weight:700">Patrícia R.</div>
+            <div style="font-size:12px;color:var(--muted)">E-commerce — RJ</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLANOS -->
+    <section id="planos-section" style="padding:80px 32px">
+      <div style="max-width:700px;margin:0 auto">
+        <div style="text-align:center;margin-bottom:48px">
+          <div style="display:inline-block;background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.3);color:var(--warning);padding:6px 18px;border-radius:20px;font-size:12px;font-weight:700;margin-bottom:18px;letter-spacing:.5px">🔥 OFERTA POR TEMPO LIMITADO</div>
+          <h2 style="font-size:38px;font-weight:900;margin-bottom:12px">Escolha seu plano</h2>
+          <p style="color:var(--muted);font-size:15px">Sem taxas escondidas. 7 dias de garantia total.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <div style="background:var(--card);border:1px solid var(--border2);border-radius:18px;padding:30px">
+            <div style="display:inline-block;background:rgba(245,200,66,0.1);color:var(--warning);border:1px solid rgba(245,200,66,0.2);padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;margin-bottom:18px">MENSAL</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:900;margin-bottom:4px">R$ 27<span style="font-size:16px;color:var(--muted);font-weight:400">/mês</span></div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:24px">Renova todo mês automaticamente</div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:26px">
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Todas as funcionalidades</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dashboard financeiro</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Assistente IA</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Suporte por email</div>
+            </div>
+            <a href="https://pay.cakto.com.br/3c79kaj_857477" target="_blank" style="display:block;text-align:center;padding:14px;border-radius:10px;background:linear-gradient(135deg,#f5c842,#e0a800);color:#1a0a00;font-weight:700;font-size:15px;text-decoration:none">Assinar Mensal</a>
+          </div>
+          <div style="background:var(--card);border:2px solid rgba(57,217,138,0.5);border-radius:18px;padding:30px;position:relative;box-shadow:0 0 40px rgba(57,217,138,0.12)">
+            <div style="position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#39d98a,#25b36e);color:#07120c;font-size:11px;font-weight:800;padding:5px 18px;border-radius:20px;white-space:nowrap;letter-spacing:.5px">⚡ MAIS POPULAR</div>
+            <div style="display:inline-block;background:rgba(57,217,138,0.15);color:var(--success);border:1px solid rgba(57,217,138,0.3);padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;margin-bottom:18px">VITALÍCIO</div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:40px;font-weight:900;margin-bottom:4px">R$ 229<span style="font-size:20px;font-weight:900">,90</span><span style="font-size:14px;color:var(--muted);font-weight:400"> único</span></div>
+            <div style="font-size:13px;color:var(--muted);margin-bottom:24px">Pague uma vez, use para sempre</div>
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:26px">
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Todas as funcionalidades</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dashboard financeiro</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Assistente IA</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Suporte prioritário</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Atualizações gratuitas</div>
+              <div style="display:flex;align-items:center;gap:10px;font-size:14px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Sem mensalidade</div>
+            </div>
+            <a href="https://pay.cakto.com.br/v2rrq7e_857458" target="_blank" class="gb" style="display:block;text-align:center;padding:14px;text-decoration:none;border-radius:10px;font-size:15px;font-weight:700">⚡ Comprar Vitalício</a>
+            <div style="text-align:center;font-size:12px;color:var(--muted);margin-top:10px">🔒 Pagamento seguro • 7 dias de garantia</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="padding:28px 32px;border-top:1px solid var(--border);text-align:center">
+      <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px">
+        <div class="lico" style="width:24px;height:24px"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#07120c" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px"><span class="gt">Precifica</span> Fácil</span>
+      </div>
+      <p style="font-size:12px;color:var(--muted)">© 2025 Precifica Fácil. Todos os direitos reservados.</p>
+    </footer>
+
+  </main>
+</div>
+
+<script>
+const DB='pf_db', SK='pf_s';
+let S={user:null,products:[],cashflow:[],smartsheet:[]},chat=[],ro=false,typing=false;
+let _pf=false,_pe=null,_ct='income';
+
+const fmt=v=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(v);
+const fp=v=>`${Number(v).toFixed(1)}%`;
+
+function ldb(){try{const r=localStorage.getItem(DB);return r?JSON.parse(r):null}catch{return null}}
+function lud(e){const d=ldb();return d?.users?.find(u=>u.email===e)||null}
+function sdb(){
+  if(!S.user)return;
+  try{
+    const d=ldb()||{users:[]};
+    const i=d.users.findIndex(u=>u.email===S.user.email);
+    const u={email:S.user.email,name:S.user.name,ph:S.user.ph||'',plan:S.user.plan,planExpiry:S.user.planExpiry,products:S.products,cashflow:S.cashflow,smartsheet:S.smartsheet,chat};
+    if(i>=0)d.users[i]=u;else d.users.push(u);
+    localStorage.setItem(DB,JSON.stringify(d));
+  }catch{}
+}
+function sua(name,email,ph){
+  const d=ldb()||{users:[]};
+  if(d.users.find(u=>u.email===email))return false;
+  d.users.push({email,name,ph,plan:'none',planExpiry:null,products:[],cashflow:[],smartsheet:[],chat:[]});
+  try{localStorage.setItem(DB,JSON.stringify(d));return true}catch{return false}
+}
+function vl(e,p){const d=ldb();if(!d)return null;const u=d.users.find(u=>u.email===e);if(!u||u.ph!==hp(p))return null;return u}
+function hp(p){let h=0;for(let i=0;i<p.length;i++)h=Math.imul(31,h)+p.charCodeAt(i)|0;return h.toString(36)+p.length.toString(36)}
+function ss(e){try{localStorage.setItem(SK,e)}catch{}}
+function ls(){try{return localStorage.getItem(SK)}catch{return null}}
+function cs(){try{localStorage.removeItem(SK)}catch{}}
+
+function cp(p){
+  const c=Number(p.cost),pr=Number(p.currentPrice??p.price??0);
+  const t=Number(p.taxes),f=Number(p.freight),a=Number(p.ads);
+  const tc=c+f+a+(pr*t/100),profit=pr-tc,margin=pr>0?(profit/pr)*100:0;
+  return{...p,profit,margin,totalCost:tc};
+}
+function csh(r){
+  const c=Number(r.cost),pr=Number(r.price),t=Number(r.taxes),f=Number(r.freight),a=Number(r.ads);
+  const tc=c+f+a+(pr*t/100),profit=pr-tc,margin=pr>0?(profit/pr)*100:0;
+  return{...r,profit,margin};
+}
+
+function toast(msg,type='success'){
+  const el=document.createElement('div');
+  el.className=`toast t${type[0]}`;el.textContent=msg;
+  document.getElementById('tc').appendChild(el);
+  setTimeout(()=>el.remove(),3500);
+}
+function tp(id){const i=document.getElementById(id);if(i)i.type=i.type==='password'?'text':'password'}
+function upw(){
+  const pw=document.getElementById('su-p')?.value||'';
+  const sc=[pw.length>=8,/[A-Z]/.test(pw),/[0-9]/.test(pw),/[^a-zA-Z0-9]/.test(pw)].filter(Boolean).length;
+  const cc=['','#f05050','#f5c842','#f5c842','#39d98a'];
+  for(let i=1;i<=4;i++){const el=document.getElementById(`pb${i}`);if(el)el.style.background=i<=sc?cc[sc]:'rgba(255,255,255,0.1)'}
+  const h=document.getElementById('ph');
+  if(h){const hints=['','Fraca','Fraca','Média','Forte'];h.textContent=pw.length>0?`Senha: ${hints[sc]}`:'';h.style.color=sc<=2?'var(--danger)':sc===3?'var(--warning)':'var(--success)'}
+}
+
+async function chkLic(email){
+  if(OWNER_EMAILS.includes(email.toLowerCase()))return{plan:'vitalicio',expiry:null,active:true};
+  if(BACKEND_URL.includes('SEU-BACKEND'))return{plan:'vitalicio',expiry:null,active:true};
+  try{
+    const r=await fetch(`${BACKEND_URL}/check-license?email=${encodeURIComponent(email)}`);
+    if(!r.ok)return{plan:'vitalicio',active:true,expiry:null};
+    return await r.json();
+  }catch{
+    const u=lud(email);
+    if(!u)return{plan:'vitalicio',active:true,expiry:null};
+    return{plan:u.plan||'vitalicio',expiry:u.planExpiry,active:true};
+  }
+}
+
+function apr(ld){
+  const{plan,active,expiry}=ld;
+  S.user.plan=plan;S.user.planExpiry=expiry;
+  const rb=document.getElementById('rb');
+  if(plan==='vitalicio'||(plan==='mensal'&&active)){ro=false;if(rb)rb.style.display='none';}
+  else if(plan==='mensal'&&!active){ro=true;if(rb)rb.style.display='flex';}
+  else{ro=true;nav('planos');}
+}
+
+function abrirLogin(){const m=document.getElementById('auth-modal');if(m){m.style.display='flex';stab('login');}}
+function abrirCadastro(){const m=document.getElementById('auth-modal');if(m){m.style.display='flex';stab('signup');}}
+function fecharAuth(){const m=document.getElementById('auth-modal');if(m)m.style.display='none';}
+
+function stab(t){
+  const lf=document.getElementById('lf'),sf=document.getElementById('sf');
+  const tl=document.getElementById('tl'),ts=document.getElementById('ts');
+  if(lf)lf.style.display=t==='login'?'':'none';
+  if(sf)sf.style.display=t==='signup'?'':'none';
+  if(tl)tl.className='atb'+(t==='login'?' active':'');
+  if(ts)ts.className='atb'+(t==='signup'?' active':'');
+}
+
+async function doLogin(){
+  const email=(document.getElementById('li-e')?.value||'').trim().toLowerCase();
+  const pass=document.getElementById('li-p')?.value||'';
+  const ed=document.getElementById('le');
+  if(ed)ed.style.display='none';
+  if(!email||!pass){if(ed){ed.textContent='Preencha email e senha.';ed.style.display='flex';}return}
+  const ud=vl(email,pass);
+  if(!ud){if(ed){ed.textContent='Email ou senha incorretos.';ed.style.display='flex';}return}
+  const bl=document.getElementById('bl');
+  if(bl){bl.disabled=true;bl.textContent='Verificando...';}
+  const ld=await chkLic(email);
+  lusr(ud,ld);
+}
+
+function doSignup(){
+  const email=(document.getElementById('su-e')?.value||'').trim().toLowerCase();
+  const name=(document.getElementById('su-n')?.value||'').trim();
+  const pass=document.getElementById('su-p')?.value||'';
+  const conf=document.getElementById('su-c')?.value||'';
+  if(!email||!name){toast('Preencha todos os campos','error');return}
+  if(pass.length<8){toast('Senha: mínimo 8 caracteres','error');return}
+  if(!/[A-Z]/.test(pass)){toast('Senha deve ter letra maiúscula','error');return}
+  if(!/[0-9]/.test(pass)){toast('Senha deve ter um número','error');return}
+  if(pass!==conf){toast('Senhas não conferem','error');return}
+  if(!sua(name,email,hp(pass))){toast('Email já cadastrado','error');return}
+  toast('Conta criada! Faça login.');
+  stab('login');
+  const el=document.getElementById('li-e');
+  if(el)el.value=email;
+}
+
+function lusr(ud,ld){
+  const fp=ld?.plan||'vitalicio',fa=ld?.active??true,fe=ld?.expiry||null;
+  S.user={email:ud.email,name:ud.name,ph:ud.ph||'',plan:fp,planExpiry:fe};
+  S.products=(ud.products||[]).map(cp);
+  S.cashflow=ud.cashflow||[];
+  S.smartsheet=(ud.smartsheet||[]).map(csh);
+  chat=ud.chat||[];
+  ss(S.user.email);
+  document.getElementById('landing').style.display='none';
+  document.getElementById('app').style.display='flex';
+  const ini=S.user.name.split(' ').map(n=>n[0]).slice(0,2).join('').toUpperCase();
+  const ua=document.getElementById('ua');if(ua)ua.textContent=ini;
+  const sbn=document.getElementById('sbn');if(sbn)sbn.textContent=S.user.name;
+  apr({plan:fp,active:fa,expiry:fe});
+  usbp();
+  nav(fp==='none'?'planos':'dashboard');
+}
+
+function usbp(){
+  const el=document.getElementById('sbp');if(!el)return;
+  const{plan,planExpiry}=S.user;
+  if(plan==='vitalicio')el.innerHTML='<span style="color:var(--success)">⚡ Vitalício</span>';
+  else if(plan==='mensal'&&!ro){const d=planExpiry?new Date(planExpiry).toLocaleDateString('pt-BR'):'—';el.innerHTML=`<span style="color:var(--warning)">📅 Mensal até ${d}</span>`;}
+  else if(ro)el.innerHTML='<span style="color:var(--danger)">🔒 Vencido</span>';
+  else el.innerHTML='<span style="color:var(--muted)">Sem plano</span>';
+}
+
+function logout(){
+  sdb();cs();
+  S={user:null,products:[],cashflow:[],smartsheet:[]};chat=[];ro=false;
+  document.getElementById('app').style.display='none';
+  document.getElementById('landing').style.display='flex';
+  const rb=document.getElementById('rb');if(rb)rb.style.display='none';
+  const bl=document.getElementById('bl');if(bl){bl.disabled=false;bl.textContent='Entrar';}
+  toast('Até logo!');
+}
+
+async function acs(){
+  const e=ls();if(!e)return;
+  const ud=lud(e);if(!ud)return;
+  const ld=await chkLic(e);
+  lusr(ud,ld);
+}
+
+function showPF(p){_pf=true;_pe=p||null;nav('products')}
+
+function nav(page){
+  if(page!=='products'){_pf=false;_pe=null;}
+  document.querySelectorAll('.ni[data-p]').forEach(el=>el.classList.toggle('active',el.dataset.p===page));
+  document.querySelectorAll('.mni').forEach((el,i)=>{
+    const pp=['dashboard','pricing','products','cashflow','ai','reports','planos'];
+    el.classList.toggle('active',pp[i]===page);
+  });
+  const pg=document.getElementById('page');
+  if(pg){pg.innerHTML=rp(page);pg.className='pv-';}
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('.ni[data-p]').forEach(el=>el.addEventListener('click',()=>nav(el.dataset.p)));
+
+function rp(p){
+  const m={dashboard:rDash,pricing:rPric,products:rProd,cashflow:rCf,smartsheet:rSs,reports:rRep,ai:rAI,planos:rPlanos,profile:rProfile};
+  return(m[p]||rDash)();
+}
+
+// ── DASHBOARD ──
+function rDash(){
+  const s=gds();const top=[...S.products].sort((a,b)=>b.profit-a.profit).slice(0,5);
+  const isp=s.totalProfit>=0;const mn=gmd();
+  return`<div style="margin-bottom:22px"><h1 style="font-size:22px;font-weight:700">Olá, ${S.user.name.split(' ')[0]} 👋</h1><p style="font-size:13px;color:var(--muted);margin-top:3px">Resumo financeiro do seu negócio</p></div>
+<div class="g4" style="margin-bottom:16px">
+  <div class="card pc"><div style="width:40px;height:40px;border-radius:10px;background:rgba(57,217,138,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><div class="pv" style="color:var(--primary)">${fmt(s.totalRevenue)}</div><div class="pl">Receita Total</div></div>
+  <div class="card pc"><div style="width:40px;height:40px;border-radius:10px;background:rgba(240,80,80,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="1.8"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/></svg></div><div class="pv" style="color:var(--danger)">${fmt(s.totalExpenses)}</div><div class="pl">Despesas</div></div>
+  <div class="card pc"><div style="width:40px;height:40px;border-radius:10px;background:${isp?'rgba(57,217,138,0.1)':'rgba(240,80,80,0.1)'};display:flex;align-items:center;justify-content:center;margin-bottom:12px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${isp?'var(--success)':'var(--danger)'}" stroke-width="1.8"><polyline points="${isp?'23 6 13.5 15.5 8.5 10.5 1 18':'23 18 13.5 8.5 8.5 13.5 1 6'}"/></svg></div><div class="pv" style="color:${isp?'var(--success)':'var(--danger)'}">${fmt(s.totalProfit)}</div><div class="pl">Lucro/Prejuízo</div></div>
+  <div class="card pc"><div style="width:40px;height:40px;border-radius:10px;background:rgba(57,217,138,0.1);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="pv" style="color:var(--primary)">${fp(s.avgMargin)}</div><div class="pl">Margem Média</div></div>
+</div>
+<div class="g2">
+  <div class="card" style="padding:18px"><h2 style="font-size:13px;font-weight:700;margin-bottom:14px">Fluxo de Caixa</h2>${rmc(mn)}</div>
+  <div class="card" style="padding:18px"><h2 style="font-size:13px;font-weight:700;margin-bottom:14px">Produtos Mais Lucrativos</h2>${rpb(top)}</div>
+</div>`;
+}
+function gds(){
+  const cf=S.cashflow;
+  const tr=cf.filter(e=>e.type==='income').reduce((s,e)=>s+Number(e.amount),0);
+  const te=cf.filter(e=>e.type==='expense').reduce((s,e)=>s+Number(e.amount),0);
+  return{totalRevenue:tr,totalExpenses:te,totalProfit:tr-te,avgMargin:S.products.length>0?S.products.reduce((s,p)=>s+p.margin,0)/S.products.length:0};
+}
+function gmd(){
+  const m={};
+  S.cashflow.forEach(e=>{
+    const d=new Date(e.date);
+    const k=`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`;
+    if(!m[k])m[k]={month:k.slice(5)+'/'+k.slice(2,4),income:0,expense:0};
+    if(e.type==='income')m[k].income+=Number(e.amount);else m[k].expense+=Number(e.amount);
+  });
+  return Object.values(m).sort((a,b)=>a.month>b.month?1:-1);
+}
+function rmc(mn){
+  if(!mn.length)return`<div style="height:100px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px">Nenhum dado</div>`;
+  const mx=Math.max(...mn.flatMap(m=>[m.income,m.expense]));
+  return`<div style="display:flex;align-items:flex-end;gap:8px;height:100px">${mn.map(m=>`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;height:100%;justify-content:flex-end"><div style="width:100%;display:flex;gap:2px;align-items:flex-end;flex:1"><div style="flex:1;background:rgba(57,217,138,0.6);border-radius:3px 3px 0 0;height:${mx>0?Math.round((m.income/mx)*100)+'%':'4px'};min-height:3px"></div><div style="flex:1;background:rgba(240,80,80,0.5);border-radius:3px 3px 0 0;height:${mx>0?Math.round((m.expense/mx)*100)+'%':'4px'};min-height:3px"></div></div><div style="font-size:9px;color:var(--muted)">${m.month}</div></div>`).join('')}</div>`;
+}
+function rpb(products){
+  if(!products.length)return`<div style="height:100px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px">Nenhum produto</div>`;
+  const mx=Math.max(...products.map(p=>Math.abs(p.profit)));
+  return products.map(p=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="font-size:12px;color:var(--muted);width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0">${p.name}</div><div style="flex:1;background:rgba(255,255,255,0.06);border-radius:3px;height:8px;overflow:hidden"><div style="height:100%;width:${mx>0?Math.round((Math.abs(p.profit)/mx)*100)+'%':'0%'};background:${p.profit>=0?'linear-gradient(90deg,#39d98a,#25b36e)':'rgba(240,80,80,0.7)'};border-radius:3px"></div></div><div style="font-size:12px;color:${p.profit>=0?'var(--success)':'var(--danger)'};width:65px;text-align:right;flex-shrink:0">${fmt(p.profit)}</div></div>`).join('');
+}
+
+// ── PRICING ──
+function rPric(){
+  return`<div style="margin-bottom:22px"><h1 style="font-size:22px;font-weight:700">Calculadora de Precificação</h1><p style="font-size:13px;color:var(--muted);margin-top:3px">Descubra o preço ideal</p></div>
+<div class="g2">
+  <div class="card" style="padding:24px">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <div><label class="lbl">Custo — <span id="dc">R$ 50,00</span></label><input class="inp" type="number" id="pc" value="50" min="0" step="0.01" oninput="ud('pc','dc')"></div>
+      <div><label class="lbl">Preço — <span id="dp">R$ 100,00</span></label><input class="inp" type="number" id="pp" value="100" min="0" step="0.01" oninput="ud('pp','dp')"></div>
+      <div><label class="lbl">Taxas — <span id="dt">10%</span></label><input type="range" id="pt" min="0" max="50" step="0.5" value="10" oninput="document.getElementById('dt').textContent=this.value+'%'"></div>
+      <div><label class="lbl">Frete — <span id="df">R$ 5,00</span></label><input class="inp" type="number" id="pf" value="5" min="0" step="0.01" oninput="ud('pf','df')"></div>
+      <div><label class="lbl">Anúncios — <span id="da">R$ 5,00</span></label><input class="inp" type="number" id="pa" value="5" min="0" step="0.01" oninput="ud('pa','da')"></div>
+      <div><label class="lbl">Margem Desejada — <span id="dm">30%</span></label><input type="range" id="pm" min="1" max="80" step="1" value="30" oninput="document.getElementById('dm').textContent=this.value+'%'"></div>
+    </div>
+    <button class="gb" style="width:100%;justify-content:center;margin-top:20px" onclick="runP()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Calcular
+    </button>
+  </div>
+  <div id="pr"><div class="card" style="padding:40px;display:flex;align-items:center;justify-content:center;text-align:center;height:100%;min-height:280px"><p style="color:var(--muted);font-size:13px">Preencha e clique em <strong style="color:var(--text)">Calcular</strong></p></div></div>
+</div>`;
+}
+function ud(a,b){const v=parseFloat(document.getElementById(a)?.value)||0;const el=document.getElementById(b);if(el)el.textContent=fmt(v)}
+function runP(){
+  const c=parseFloat(document.getElementById('pc')?.value)||0;
+  const p=parseFloat(document.getElementById('pp')?.value)||0;
+  const t=parseFloat(document.getElementById('pt')?.value)||0;
+  const f=parseFloat(document.getElementById('pf')?.value)||0;
+  const a=parseFloat(document.getElementById('pa')?.value)||0;
+  const dm=parseFloat(document.getElementById('pm')?.value)||30;
+  const tc=c+f+a+(p*t/100),profit=p-tc,margin=p>0?(profit/p)*100:0,ideal=tc/(1-dm/100),isp=profit>=0;
+  const pr=document.getElementById('pr');
+  if(!pr)return;
+  pr.innerHTML=`<div style="display:flex;flex-direction:column;gap:12px">
+    <div class="g2">
+      <div class="card" style="padding:14px"><div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:${isp?'var(--success)':'var(--danger)'}">${fmt(profit)}</div><div style="font-size:11px;color:var(--muted)">Lucro por Venda</div></div>
+      <div class="card" style="padding:14px"><div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:${margin>=20?'var(--success)':margin>=10?'var(--warning)':'var(--danger)'}">${fp(margin)}</div><div style="font-size:11px;color:var(--muted)">Margem Real</div></div>
+      <div class="card" style="padding:14px;border-color:rgba(57,217,138,0.3)"><div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:var(--primary)">${fmt(ideal)}</div><div style="font-size:11px;color:var(--muted)">Preço Ideal (${dm}%)</div></div>
+      <div class="card" style="padding:14px"><div style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:var(--warning)">${fmt(tc)}</div><div style="font-size:11px;color:var(--muted)">Custo Total</div></div>
+    </div>
+    <div class="al ${isp?'as':'ad'}">${isp?`✅ Margem de ${fp(margin)} — ${margin>=30?'excelente!':margin>=20?'boa precificação.':'considere aumentar o preço.'}`:`❌ Prejuízo de ${fmt(Math.abs(profit))} por venda. Preço mínimo: ${fmt(tc)}.`}</div>
+  </div>`;
+}
+
+// ── PRODUCTS ──
+function rProd(){
+  const products=S.products;
+  const sf=_pf;const ep=_pe;
+  return`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px">
+  <div><h1 style="font-size:22px;font-weight:700">Produtos</h1><p style="font-size:13px;color:var(--muted);margin-top:3px">Gerencie seus produtos</p></div>
+  ${!ro&&!sf?`<button class="gb" onclick="showPF()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Novo Produto</button>`:''}
+</div>
+${sf?`<div class="card" style="padding:22px;margin-bottom:16px;border-color:rgba(57,217,138,0.3)">
+  <h3 style="font-size:15px;font-weight:700;margin-bottom:18px;color:var(--primary)">${ep?'Editar Produto':'Novo Produto'}</h3>
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div><label class="lbl">Nome *</label><input class="inp" id="pf-name" placeholder="Ex: Camiseta Básica" value="${ep?.name||''}"></div>
+    <div class="g2">
+      <div><label class="lbl">Categoria</label><input class="inp" id="pf-cat" placeholder="Ex: Vestuário" value="${ep?.category||''}"></div>
+      <div><label class="lbl">Fornecedor</label><input class="inp" id="pf-sup" placeholder="Fornecedor" value="${ep?.supplier||''}"></div>
+    </div>
+    <div class="g2">
+      <div><label class="lbl">Custo (R$)</label><input class="inp" type="number" id="pf-cost" value="${ep?.cost||0}" min="0" step="0.01"></div>
+      <div><label class="lbl">Preço (R$)</label><input class="inp" type="number" id="pf-price" value="${ep?.currentPrice||0}" min="0" step="0.01"></div>
+    </div>
+    <div class="g3">
+      <div><label class="lbl">Taxas (%)</label><input class="inp" type="number" id="pf-tax" value="${ep?.taxes||0}" min="0" step="0.1"></div>
+      <div><label class="lbl">Frete (R$)</label><input class="inp" type="number" id="pf-frt" value="${ep?.freight||0}" min="0" step="0.01"></div>
+      <div><label class="lbl">Anúncios (R$)</label><input class="inp" type="number" id="pf-ads" value="${ep?.ads||0}" min="0" step="0.01"></div>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:4px">
+      <button class="bo" style="flex:1;justify-content:center" onclick="_pf=false;_pe=null;nav('products')">Cancelar</button>
+      <button class="gb" style="flex:1;justify-content:center" onclick="svProd()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Salvar
+      </button>
+    </div>
+  </div>
+</div>`:''}
+${products.length===0&&!sf?`<div class="card" style="padding:60px;text-align:center">
+  <h3 style="margin-bottom:8px">Nenhum produto</h3>
+  <p style="color:var(--muted);font-size:13px;margin-bottom:20px">Adicione seus produtos</p>
+  ${!ro?`<button class="gb" onclick="showPF()">Adicionar Produto</button>`:''}
+</div>`:''}
+${products.length>0&&!sf?`<div class="card" style="overflow:hidden"><div class="tw"><table>
+  <thead><tr><th>Produto</th><th>Cat.</th><th style="text-align:right">Custo</th><th style="text-align:right">Preço</th><th style="text-align:right">Lucro</th><th style="text-align:right">Margem</th><th>Status</th>${!ro?'<th></th>':''}</tr></thead>
+  <tbody>${products.map(p=>{
+    const sl=p.profit>=0&&p.margin>=20?'bs':p.profit>=0?'bw':'bd';
+    const st=p.profit>=0&&p.margin>=20?'Excelente':p.profit>=0?'Regular':'Prejuízo';
+    return`<tr><td><strong>${p.name}</strong></td><td><span class="badge bm">${p.category||'Geral'}</span></td><td style="text-align:right;color:var(--muted)">${fmt(p.cost)}</td><td style="text-align:right">${fmt(p.currentPrice)}</td><td style="text-align:right;color:${p.profit>=0?'var(--success)':'var(--danger)'}"><strong>${fmt(p.profit)}</strong></td><td style="text-align:right;color:${p.margin>=20?'var(--success)':p.margin>=10?'var(--warning)':'var(--danger)'}"><strong>${fp(p.margin)}</strong></td><td><span class="badge ${sl}">${st}</span></td>${!ro?`<td><div style="display:flex;gap:4px">
+      <button class="bg" style="padding:5px 8px" onclick="showPF(S.products.find(x=>x.id===${p.id}))"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+      <button class="bg" style="padding:5px 8px;color:var(--danger)" onclick="delP(${p.id})"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg></button>
+    </div></td>`:''}</tr>`;
+  }).join('')}</tbody>
+</table></div></div>`:''}`;
+}
+
+function svProd(){
+  const name=(document.getElementById('pf-name')?.value||'').trim();
+  if(!name){toast('Nome é obrigatório','error');return}
+  const data={name,category:document.getElementById('pf-cat')?.value||'',supplier:document.getElementById('pf-sup')?.value||'',
+    cost:parseFloat(document.getElementById('pf-cost')?.value)||0,currentPrice:parseFloat(document.getElementById('pf-price')?.value)||0,
+    taxes:parseFloat(document.getElementById('pf-tax')?.value)||0,freight:parseFloat(document.getElementById('pf-frt')?.value)||0,
+    ads:parseFloat(document.getElementById('pf-ads')?.value)||0};
+  const eid=_pe?.id||null;
+  if(eid)S.products=S.products.map(p=>p.id===eid?cp({...p,...data}):p);
+  else S.products.push(cp({...data,id:Date.now()}));
+  sdb();_pf=false;_pe=null;
+  toast(eid?'Produto atualizado!':'Produto criado! ✅');
+  nav('products');
+}
+function delP(id){S.products=S.products.filter(p=>p.id!==id);sdb();toast('Removido');nav('products')}
+
+// ── CASHFLOW ──
+function rCf(){
+  const cf=S.cashflow;
+  const ti=cf.filter(e=>e.type==='income').reduce((s,e)=>s+Number(e.amount),0);
+  const te=cf.filter(e=>e.type==='expense').reduce((s,e)=>s+Number(e.amount),0);
+  const bal=ti-te,isp=bal>=0;
+  return`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px">
+  <div><h1 style="font-size:22px;font-weight:700">Fluxo de Caixa</h1><p style="font-size:13px;color:var(--muted);margin-top:3px">Entradas e saídas</p></div>
+  ${!ro?`<button class="gb" onclick="oCF()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Novo Lançamento</button>`:''}
+</div>
+<div class="g3" style="margin-bottom:16px">
+  <div class="card" style="padding:18px;text-align:center"><div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--success)">${fmt(ti)}</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Entradas</div></div>
+  <div class="card" style="padding:18px;text-align:center"><div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:var(--danger)">${fmt(te)}</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Saídas</div></div>
+  <div class="card" style="padding:18px;text-align:center;border-color:${isp?'rgba(57,217,138,0.2)':'rgba(240,80,80,0.2)'}"><div style="font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:700;color:${isp?'var(--success)':'var(--danger)'}">${fmt(bal)}</div><div style="font-size:12px;color:var(--muted);margin-top:3px">Saldo</div></div>
+</div>
+${cf.length===0?`<div class="card" style="padding:60px;text-align:center"><h3 style="margin-bottom:8px">Nenhum lançamento</h3>${!ro?`<button class="gb" style="margin-top:12px" onclick="oCF()">Primeiro Lançamento</button>`:''}</div>`:`
+<div class="card" style="overflow:hidden"><div class="tw"><table>
+  <thead><tr><th>Data</th><th>Descrição</th><th>Categoria</th><th>Tipo</th><th style="text-align:right">Valor</th>${!ro?'<th></th>':''}</tr></thead>
+  <tbody>${cf.map(e=>{const ii=e.type==='income';const d=new Date(e.date+'T12:00:00');return`<tr><td style="color:var(--muted);white-space:nowrap">${d.toLocaleDateString('pt-BR')}</td><td><strong>${e.description}</strong></td><td><span class="badge bm">${e.category}</span></td><td><span class="badge ${ii?'bs':'bd'}">${ii?'Entrada':'Saída'}</span></td><td style="text-align:right;color:${ii?'var(--success)':'var(--danger)'}"><strong>${ii?'+':'-'}${fmt(Number(e.amount))}</strong></td>${!ro?`<td><button class="bg" style="padding:5px 8px;color:var(--danger)" onclick="delCF(${e.id})"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg></button></td>`:''}</tr>`}).join('')}</tbody>
+</table></div></div>`}
+<div id="cfm" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:500;align-items:center;justify-content:center;padding:20px">
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;width:100%;max-width:460px;max-height:90vh;overflow-y:auto">
+    <h3 style="font-family:'Space Grotesk',sans-serif;font-size:16px;font-weight:700;margin-bottom:20px">Novo Lançamento</h3>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div><label class="lbl">Tipo</label><div style="display:flex;gap:8px;margin-top:5px">
+        <button id="cbi" onclick="sct('income')" style="flex:1;padding:9px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid rgba(57,217,138,0.3);background:rgba(57,217,138,0.1);color:var(--success)">Entrada</button>
+        <button id="cbe" onclick="sct('expense')" style="flex:1;padding:9px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid var(--border2);background:rgba(255,255,255,0.05);color:var(--muted)">Saída</button>
+      </div></div>
+      <div><label class="lbl">Categoria</label><select class="inp" id="cfc" style="appearance:none;cursor:pointer"><option>Vendas</option><option>Serviços</option><option>Investimento</option><option>Outros</option></select></div>
+      <div><label class="lbl">Descrição</label><input class="inp" id="cfd" placeholder="Ex: Venda de produto X"></div>
+      <div class="g2">
+        <div><label class="lbl">Valor (R$)</label><input class="inp" type="number" id="cfa" value="0" min="0" step="0.01"></div>
+        <div><label class="lbl">Data</label><input class="inp" type="date" id="cfdt"></div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:6px">
+        <button class="bo" style="flex:1;justify-content:center" onclick="cCF()">Cancelar</button>
+        <button class="gb" style="flex:1;justify-content:center" onclick="svCF()">Adicionar</button>
+      </div>
+    </div>
+  </div>
+</div>`;
+}
+function oCF(){if(ro)return;const m=document.getElementById('cfm');if(m){const dt=document.getElementById('cfdt');if(dt)dt.value=new Date().toISOString().split('T')[0];const a=document.getElementById('cfa');if(a)a.value=0;const d=document.getElementById('cfd');if(d)d.value='';sct('income');m.style.display='flex';}}
+function cCF(){const m=document.getElementById('cfm');if(m)m.style.display='none'}
+function sct(t){
+  _ct=t;const ii=t==='income';
+  const bi=document.getElementById('cbi'),be=document.getElementById('cbe');
+  if(bi)bi.style.cssText=`flex:1;padding:9px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid ${ii?'rgba(57,217,138,0.3)':'var(--border2)'};background:${ii?'rgba(57,217,138,0.1)':'rgba(255,255,255,0.05)'};color:${ii?'var(--success)':'var(--muted)'}`;
+  if(be)be.style.cssText=`flex:1;padding:9px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;border:1px solid ${!ii?'rgba(240,80,80,0.3)':'var(--border2)'};background:${!ii?'rgba(240,80,80,0.1)':'rgba(255,255,255,0.05)'};color:${!ii?'var(--danger)':'var(--muted)'}`;
+  const sel=document.getElementById('cfc');
+  if(sel)sel.innerHTML=(ii?['Vendas','Serviços','Investimento','Outros']:['Fornecedores','Marketing','Frete','Taxas','Salários','Aluguel','Outros']).map(c=>`<option>${c}</option>`).join('');
+}
+function svCF(){
+  const desc=(document.getElementById('cfd')?.value||'').trim();
+  const amount=parseFloat(document.getElementById('cfa')?.value)||0;
+  if(!desc){toast('Descrição obrigatória','error');return}
+  if(amount<=0){toast('Valor maior que zero','error');return}
+  S.cashflow.unshift({id:Date.now(),type:_ct,category:document.getElementById('cfc')?.value||'',description:desc,amount,date:document.getElementById('cfdt')?.value||''});
+  sdb();toast('Lançamento adicionado!');cCF();nav('cashflow');
+}
+function delCF(id){S.cashflow=S.cashflow.filter(e=>e.id!==id);sdb();toast('Removido');nav('cashflow')}
+
+// ── SMARTSHEET ──
+function rSs(){
+  const rows=S.smartsheet;
+  return`<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px">
+  <div><h1 style="font-size:22px;font-weight:700">Planilha Inteligente</h1><p style="font-size:13px;color:var(--muted);margin-top:3px">Clique nas células para editar</p></div>
+  ${!ro?`<button class="gb" onclick="addSR()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Adicionar</button>`:''}
+</div>
+${rows.length===0?`<div class="card" style="padding:60px;text-align:center"><h3 style="margin-bottom:8px">Planilha vazia</h3>${!ro?`<button class="gb" style="margin-top:12px" onclick="addSR()">Adicionar</button>`:''}</div>`:`
+<div class="card" style="overflow:hidden"><div class="tw"><table>
+  <thead><tr><th>Produto</th><th>Custo</th><th>Preço</th><th>Taxas%</th><th>Frete</th><th>Anúncios</th><th>Lucro</th><th>Margem</th>${!ro?'<th></th>':''}</tr></thead>
+  <tbody id="stb">${rows.map(rSR).join('')}</tbody>
+</table></div>
+<div style="padding:8px 14px;border-top:1px solid var(--border2);font-size:11px;color:var(--muted)">${ro?'🔒 Modo leitura':'💡 Clique em qualquer célula para editar'}</div>
+</div>`}`;
+}
+function rSR(r){
+  const ip=r.profit>=0;
+  const ec=(id,f,t,v)=>ro?`<span style="font-size:13px">${t==='number'?(f==='taxes'?v:fmt(v)):v||'—'}</span>`:`<span class="ec" onclick="sE(${id},'${f}','${t}',this)">${t==='number'?(f==='taxes'?v:fmt(v)):v||'—'}</span>`;
+  return`<tr id="sr-${r.id}"><td>${ec(r.id,'productName','text',r.productName)}</td><td>${ec(r.id,'cost','number',Number(r.cost))}</td><td>${ec(r.id,'price','number',Number(r.price))}</td><td>${ec(r.id,'taxes','number',Number(r.taxes))}</td><td>${ec(r.id,'freight','number',Number(r.freight))}</td><td>${ec(r.id,'ads','number',Number(r.ads))}</td><td style="color:${ip?'var(--success)':'var(--danger)'}"><strong>${fmt(r.profit)}</strong></td><td style="color:${r.margin>=20?'var(--success)':r.margin>=10?'var(--warning)':'var(--danger)'}"><strong>${fp(r.margin)}</strong></td>${!ro?`<td><div style="display:flex;gap:3px"><button class="bg" style="padding:5px 8px" onclick="dupSR(${r.id})"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></button><button class="bg" style="padding:5px 8px;color:var(--danger)" onclick="delSR(${r.id})"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg></button></div></td>`:''}</tr>`;
+}
+function addSR(){if(ro)return;S.smartsheet.push(csh({id:Date.now(),productName:'Novo Produto',cost:0,price:0,taxes:0,freight:0,ads:0}));sdb();nav('smartsheet')}
+function dupSR(id){if(ro)return;const r=S.smartsheet.find(x=>x.id===id);if(!r)return;S.smartsheet.push(csh({...r,id:Date.now(),productName:r.productName+' (cópia)'}));sdb();nav('smartsheet')}
+function delSR(id){if(ro)return;S.smartsheet=S.smartsheet.filter(r=>r.id!==id);sdb();nav('smartsheet')}
+function sE(id,field,type,el){
+  if(ro)return;
+  const row=S.smartsheet.find(r=>r.id===id);if(!row)return;
+  const inp=document.createElement('input');inp.className='ei';inp.type=type;inp.value=row[field];
+  if(type==='number'){inp.step='0.01';inp.min='0';}
+  inp.onblur=()=>{
+    const v=type==='number'?(parseFloat(inp.value)||0):inp.value;
+    S.smartsheet=S.smartsheet.map(r=>r.id!==id?r:csh({...r,[field]:v}));
+    sdb();inp.remove();el.style.display='';
+    const nr=S.smartsheet.find(r=>r.id===id);
+    el.textContent=type==='number'?(field==='taxes'?nr[field]:fmt(nr[field])):nr[field]||'—';
+    const tr=document.getElementById(`sr-${id}`);if(tr)tr.outerHTML=rSR(nr);
+  };
+  inp.onkeydown=e=>{if(e.key==='Enter')inp.blur();if(e.key==='Escape'){el.style.display='';inp.remove();}};
+  el.style.display='none';el.parentNode.insertBefore(inp,el.nextSibling);inp.focus();inp.select();
+}
+
+// ── REPORTS ──
+function rRep(){
+  const products=S.products;
+  return`<div style="margin-bottom:22px"><h1 style="font-size:22px;font-weight:700">Relatórios</h1><p style="font-size:13px;color:var(--muted);margin-top:3px">Análise financeira detalhada</p></div>
+${products.length===0?`<div class="card" style="padding:60px;text-align:center"><p style="color:var(--muted)">Cadastre produtos para ver relatórios</p></div>`:`
+<div class="card" style="padding:20px;margin-bottom:16px">
+  <h2 style="font-size:14px;font-weight:700;margin-bottom:14px">Lucro por Produto</h2>
+  ${products.map(p=>`<div style="display:flex;align-items:center;gap:10px;margin-bottom:9px"><div style="width:100px;font-size:11px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex-shrink:0">${p.name}</div><div style="flex:1;height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden"><div style="height:100%;width:${Math.max(5,Math.round((Math.abs(p.profit)/Math.max(...products.map(x=>Math.abs(x.profit))))*100))}%;background:${p.profit>=0?'linear-gradient(90deg,#39d98a,#25b36e)':'rgba(240,80,80,0.7)'};border-radius:4px"></div></div><div style="width:80px;text-align:right;font-size:11px;color:${p.profit>=0?'var(--success)':'var(--danger)'}"><strong>${fmt(p.profit)}</strong></div></div>`).join('')}
+</div>
+<div class="card" style="overflow:hidden"><div class="tw"><table>
+  <thead><tr><th>#</th><th>Produto</th><th style="text-align:right">Custo</th><th style="text-align:right">Preço</th><th style="text-align:right">Lucro</th><th style="text-align:right">Margem</th><th>Status</th></tr></thead>
+  <tbody>${products.map((p,i)=>`<tr><td style="color:var(--muted)">${i+1}</td><td><strong>${p.name}</strong></td><td style="text-align:right;color:var(--muted)">${fmt(p.cost)}</td><td style="text-align:right">${fmt(p.currentPrice)}</td><td style="text-align:right;color:${p.profit>=0?'var(--success)':'var(--danger)'}"><strong>${fmt(p.profit)}</strong></td><td style="text-align:right;color:${p.margin>=20?'var(--success)':p.margin>=10?'var(--warning)':'var(--danger)'}"><strong>${fp(p.margin)}</strong></td><td><span class="badge ${p.profit>=0&&p.margin>=20?'bs':p.profit>=0?'bw':'bd'}">${p.profit>=0&&p.margin>=20?'Excelente':p.profit>=0?'Regular':'Prejuízo'}</span></td></tr>`).join('')}</tbody>
+</table></div></div>`}`;
+}
+
+// ── AI ──
+function rAI(){
+  return`<div style="margin-bottom:22px"><h1 style="font-size:22px;font-weight:700">Assistente IA</h1><p style="font-size:13px;color:var(--muted);margin-top:3px">Seu consultor financeiro inteligente</p></div>
+<div class="card" style="display:flex;flex-direction:column;height:calc(100vh - 200px);min-height:400px;overflow:hidden">
+  ${chat.length===0?`<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px">
+    <div style="width:64px;height:64px;border-radius:50%;background:rgba(57,217,138,0.1);border:1px solid rgba(57,217,138,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:16px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+    <h3 style="font-size:16px;font-weight:700;margin-bottom:6px">Assistente Financeiro IA</h3>
+    <p style="color:var(--muted);font-size:13px;max-width:360px">Analiso seus produtos, calculo margens e sugiro preços.</p>
+  </div>`:`<div id="cm" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px">
+    ${chat.map(m=>`<div class="msg m${m.role[0]}"><div class="mb">${m.content.replace(/\n/g,'<br>')}</div></div>`).join('')}
+    ${typing?`<div class="msg ma"><div class="mb"><span class="td"></span><span class="td"></span><span class="td"></span></div></div>`:''}
+  </div>`}
+  <div style="display:flex;flex-wrap:wrap;gap:6px;padding:10px 16px 0">
+    ${['Estou tendo lucro?','Qual meu melhor produto?','Como melhorar minha margem?','Meu caixa está saudável?'].map(q=>`<button style="background:rgba(57,217,138,0.07);border:1px solid rgba(57,217,138,0.15);color:var(--primary);border-radius:20px;padding:5px 12px;font-size:11px;cursor:pointer" onclick="sc('${q}')">💬 ${q}</button>`).join('')}
+  </div>
+  <div style="padding:14px 16px;border-top:1px solid var(--border2);display:flex;gap:10px">
+    <input class="inp" id="ci" placeholder="Pergunte sobre produtos, margens, lucro..." onkeydown="if(event.key==='Enter')sc()">
+    <button class="gb" onclick="sc()" style="flex-shrink:0"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+  </div>
+</div>`;
+}
+function sc(text){
+  const inp=document.getElementById('ci');
+  const msg=text||(inp?inp.value.trim():'');
+  if(!msg||typing)return;if(inp)inp.value='';
+  chat.push({role:'user',content:msg});typing=true;
+  nav('ai');
+  setTimeout(()=>{chat.push({role:'assistant',content:gAI(msg)});typing=false;sdb();nav('ai');const cm=document.getElementById('cm');if(cm)cm.scrollTop=cm.scrollHeight;},1200+Math.random()*800);
+}
+function gAI(msg){
+  const ml=msg.toLowerCase(),pr=S.products,cf=S.cashflow;
+  if(ml.includes('lucro')||ml.includes('ganhando')){
+    if(!pr.length)return'Nenhum produto cadastrado. Vá em Produtos e adicione seus itens!';
+    const b=[...pr].sort((a,c)=>c.profit-a.profit)[0];const p=pr.filter(x=>x.profit>=0);
+    return`Com base nos seus produtos:\n\n✅ ${p.length} de ${pr.length} são lucrativos.\n🏆 Mais lucrativo: ${b.name} → ${fmt(b.profit)}/venda (${fp(b.margin)} de margem)\n\n${p.length<pr.length?`⚠️ ${pr.length-p.length} produto(s) com prejuízo — revise os custos.`:'🎉 Todos os seus produtos são lucrativos!'}`;
+  }
+  if(ml.includes('melhor')){if(!pr.length)return'Nenhum produto ainda.';const b=[...pr].sort((a,c)=>c.profit-a.profit)[0];return`🏆 Maior lucro: ${b.name} → ${fmt(b.profit)}/venda com ${fp(b.margin)} de margem!`;}
+  if(ml.includes('margem')){const avg=pr.length>0?pr.reduce((s,p)=>s+p.margin,0)/pr.length:0;return`📈 Margem atual: ${fp(avg)}\n\nEstrategias para melhorar:\n1. Negocie com fornecedores\n2. Reduza o frete\n3. Ajuste preços\n4. Corte anúncios ineficientes`;}
+  if(ml.includes('caixa')||ml.includes('saud')){
+    if(!cf.length)return'Nenhum lançamento no fluxo de caixa ainda!';
+    const ti=cf.filter(e=>e.type==='income').reduce((s,e)=>s+Number(e.amount),0);
+    const te=cf.filter(e=>e.type==='expense').reduce((s,e)=>s+Number(e.amount),0);
+    const bal=ti-te;
+    return`💰 Fluxo de Caixa:\n\n📈 Entradas: ${fmt(ti)}\n📉 Saídas: ${fmt(te)}\n${bal>=0?'✅':'❌'} Saldo: ${fmt(bal)}\n\n${bal>=0?'Caixa positivo!':'⚠️ Saldo negativo. Revise as despesas.'}`;
+  }
+  const s=gds();return`Olá! Resumo:\n\n📊 ${pr.length} produtos\n💰 Receita: ${fmt(s.totalRevenue)}\n${s.totalProfit>=0?'✅':'❌'} Resultado: ${fmt(s.totalProfit)}\n📈 Margem: ${fp(s.avgMargin)}\n\nComo posso ajudar?`;
+}
+
+// ── PLANOS ──
+function rPlanos(){
+  const{plan,planExpiry}=S.user;
+  const iv=plan==='vitalicio',im=plan==='mensal'&&!ro,iv2=plan==='mensal'&&ro,isn=plan==='none';
+  return`<div style="margin-bottom:22px"><h1 style="font-size:22px;font-weight:700">Meu Plano</h1></div>
+${iv?`<div class="al as" style="margin-bottom:20px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Você tem acesso <strong>Vitalício</strong> — use para sempre!</div>`:''}
+${iv2?`<div class="al aw" style="margin-bottom:20px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>Plano vencido. Você está em <strong>modo leitura</strong>. Renove para editar.</div>`:''}
+${isn?`<div class="al ai" style="margin-bottom:20px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Escolha um plano para começar!</div>`:''}
+<div class="g2" style="max-width:700px;gap:20px">
+  <div class="pc2${im?' ft':''}">
+    ${im?'<div class="pb2">✅ Plano Atual</div>':''}
+    <div style="margin-bottom:16px">
+      <div class="badge bw" style="margin-bottom:10px">Mensal</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800">R$ 27<span style="font-size:14px;color:var(--muted)">/mês</span></div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px">Renova todo mês automaticamente</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+      ${['Todas as funcionalidades','Dashboard financeiro','Assistente IA','Suporte por email'].map(f=>`<div style="display:flex;align-items:center;gap:8px;font-size:13px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>${f}</div>`).join('')}
+    </div>
+    ${im?`<div style="font-size:12px;color:var(--muted)">Vence em: <strong style="color:var(--text)">${planExpiry?new Date(planExpiry).toLocaleDateString('pt-BR'):'—'}</strong></div>`:`<a href="https://pay.cakto.com.br/3c79kaj_857477" target="_blank" class="gb" style="width:100%;justify-content:center;background:linear-gradient(135deg,#f5c842,#e0a800);color:#1a0a00">Assinar Mensal</a>`}
+  </div>
+  <div class="pc2${iv?' ft':''}">
+    ${iv?'<div class="pb2">✅ Plano Atual</div>':'<div class="pb2">⚡ Mais Popular</div>'}
+    <div style="margin-bottom:16px">
+      <div class="badge bv" style="margin-bottom:10px">Vitalício</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:800">R$ 229<span style="font-size:14px;font-weight:800">,90</span><span style="font-size:14px;color:var(--muted)"> único</span></div>
+      <div style="font-size:12px;color:var(--muted);margin-top:4px">Pague uma vez, use para sempre</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+      ${['Todas as funcionalidades','Dashboard financeiro','Assistente IA','Suporte prioritário','Atualizações gratuitas','Sem mensalidade'].map(f=>`<div style="display:flex;align-items:center;gap:8px;font-size:13px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>${f}</div>`).join('')}
+    </div>
+    ${iv?`<div style="background:rgba(57,217,138,0.05);border:1px solid rgba(57,217,138,0.15);border-radius:8px;padding:12px;font-size:13px;color:var(--muted);text-align:center">🎉 Você tem acesso vitalício!</div>`:`<a href="https://pay.cakto.com.br/v2rrq7e_857458" target="_blank" class="gb" style="width:100%;justify-content:center">⚡ Comprar Vitalício</a>`}
+  </div>
+</div>`;
+}
+
+// ── PROFILE ──
+function rProfile(){
+  const u=S.user;
+  const ini=u.name.split(' ').map(n=>n[0]).slice(0,2).join('').toUpperCase();
+  return`<div style="margin-bottom:22px"><h1 style="font-size:22px;font-weight:700">Perfil</h1></div>
+<div style="max-width:480px">
+  <div class="card" style="padding:24px;display:flex;align-items:center;gap:18px;margin-bottom:14px">
+    <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#39d98a,#25b36e);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:#07120c;flex-shrink:0" class="ng">${ini}</div>
+    <div>
+      <div style="font-size:18px;font-weight:700">${u.name}</div>
+      <div style="color:var(--muted);font-size:13px">${u.email}</div>
+      <div style="margin-top:5px"><span class="badge ${u.plan==='vitalicio'?'bv':u.plan==='mensal'&&!ro?'bw':'bd'}">${u.plan==='vitalicio'?'⚡ Vitalício':u.plan==='mensal'&&!ro?'📅 Mensal':'🔒 Vencido'}</span></div>
+    </div>
+  </div>
+  <div class="card" style="padding:18px;margin-bottom:14px">
+    <button class="bo" onclick="nav('planos')" style="width:100%;justify-content:center;margin-bottom:10px">Ver meu plano</button>
+    <button class="bo" style="width:100%;justify-content:center;border-color:rgba(240,80,80,0.3);color:var(--danger)" onclick="logout()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sair
+    </button>
+  </div>
+</div>`;
+}
+
+window.addEventListener('beforeunload',()=>sdb());
+acs();
+</script>
+</body>
+</html>
