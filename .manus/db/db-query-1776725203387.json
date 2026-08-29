@@ -1,0 +1,9 @@
+{
+  "query": "CREATE TABLE `products` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`userId` int NOT NULL,\n\t`name` varchar(255) NOT NULL,\n\t`category` varchar(128),\n\t`supplier` varchar(255),\n\t`cost` decimal(12,2) NOT NULL DEFAULT '0',\n\t`suggestedPrice` decimal(12,2) DEFAULT '0',\n\t`currentPrice` decimal(12,2) DEFAULT '0',\n\t`taxes` decimal(5,2) DEFAULT '0',\n\t`freight` decimal(12,2) DEFAULT '0',\n\t`ads` decimal(12,2) DEFAULT '0',\n\t`notes` text,\n\t`createdAt` timestamp NOT NULL DEFAULT (now()),\n\t`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,\n\tCONSTRAINT `products_id` PRIMARY KEY(`id`)\n)",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway05.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 2Eo7zrRhSZjdU5q.root --database LGpDVcZ5tKtXiGoHJN426V --execute CREATE TABLE `products` (\n\t`id` int AUTO_INCREMENT NOT NULL,\n\t`userId` int NOT NULL,\n\t`name` varchar(255) NOT NULL,\n\t`category` varchar(128),\n\t`supplier` varchar(255),\n\t`cost` decimal(12,2) NOT NULL DEFAULT '0',\n\t`suggestedPrice` decimal(12,2) DEFAULT '0',\n\t`currentPrice` decimal(12,2) DEFAULT '0',\n\t`taxes` decimal(5,2) DEFAULT '0',\n\t`freight` decimal(12,2) DEFAULT '0',\n\t`ads` decimal(12,2) DEFAULT '0',\n\t`notes` text,\n\t`createdAt` timestamp NOT NULL DEFAULT (now()),\n\t`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,\n\tCONSTRAINT `products_id` PRIMARY KEY(`id`)\n)",
+  "rows": [],
+  "messages": [],
+  "stdout": "",
+  "stderr": "",
+  "execution_time_ms": 127
+}

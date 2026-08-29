@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1776725079814,
+      "tag": "0000_round_the_initiative",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1776725182132,
+      "tag": "0001_white_lady_deathstrike",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1776731659996,
+      "tag": "0002_sudden_silk_fever",
+      "breakpoints": true
+    }
+  ]
+}
