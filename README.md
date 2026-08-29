@@ -104,3 +104,68 @@ precifica-facil/
 ├── vite.config.ts   # Configurações do Vite
 ├── vitest.config.ts # Configurações dos testes
 └── README.md        # Documentação do projeto
+📚 O que foi aprendido
+
+O desenvolvimento do Precifica Fácil permitiu consolidar conhecimentos importantes relacionados à engenharia de software e ao desenvolvimento de aplicações web.
+
+Desenvolvimento Front-end
+
+Foi possível aprofundar conhecimentos na construção de interfaces utilizando React e TypeScript, trabalhando com componentes, páginas, formulários, navegação e organização da interface.
+
+Desenvolvimento Back-end
+
+O projeto possibilitou compreender melhor a criação e organização de um servidor utilizando Node.js e TypeScript, além da comunicação entre diferentes partes da aplicação.
+
+Banco de dados
+
+A utilização do Drizzle ORM permitiu colocar em prática conceitos relacionados à modelagem e manipulação de dados, além do gerenciamento de schemas e migrações.
+
+Integração entre sistemas
+
+O desenvolvimento do projeto ajudou a compreender como o front-end e o back-end podem se comunicar por meio de APIs e procedimentos tipados utilizando tRPC.
+
+Testes automatizados
+
+A utilização do Vitest proporcionou experiência na criação de testes para verificar o funcionamento de partes importantes da aplicação e aumentar a confiabilidade do código.
+
+Organização de projetos
+
+O projeto mostrou a importância de separar responsabilidades entre front-end, back-end, banco de dados e código compartilhado, tornando a aplicação mais organizada e fácil de manter.
+
+Controle de versão
+
+O uso do Git e do GitHub permitiu compreender na prática como controlar versões do projeto, registrar alterações e manter o código armazenado em um repositório remoto.
+
+Publicação de aplicações
+
+Também foi possível aprender sobre o processo de publicação de uma aplicação web utilizando uma plataforma de hospedagem, disponibilizando o projeto para acesso pela internet.
+
+Documentação
+
+Outro aprendizado importante foi compreender que um projeto de software não é composto apenas pelo código.
+
+A documentação por meio do README permite explicar o objetivo da aplicação, os problemas abordados, as tecnologias utilizadas, sua organização e os conhecimentos adquiridos durante o desenvolvimento.
+
+🌐 Acesso ao projeto
+
+A versão publicada da aplicação pode ser acessada pelo endereço:
+
+https://precifica-facil-br-app.netlify.app/
+
+🎓 Finalidade acadêmica
+
+O Precifica Fácil foi utilizado como projeto acadêmico para aplicar conhecimentos de desenvolvimento de software em uma solução prática.
+
+Durante sua elaboração foram trabalhados conceitos de desenvolvimento web, organização de projetos, banco de dados, testes, controle de versão, documentação e publicação de aplicações.
+
+O projeto também possibilitou compreender melhor as diferentes etapas envolvidas no desenvolvimento de uma aplicação, desde sua estruturação até sua disponibilização para acesso.
+
+👨‍💻 Autor
+
+Raphael Guastaferro
+
+Projeto desenvolvido para fins acadêmicos e educacionais.
+
+📄 Licença
+
+Este projeto foi desenvolvido para fins acadêmicos e educacionais.
