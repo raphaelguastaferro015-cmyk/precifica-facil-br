@@ -1,137 +1,106 @@
-# Sistema de Gestão Financeira
+# 💰 Precifica Fácil
 
-## 📌 Sobre o projeto
+O **Precifica Fácil** é uma aplicação web desenvolvida para auxiliar empreendedores e pequenos negócios na organização de seus produtos, precificação e gestão financeira.
 
-O Sistema de Gestão Financeira é um projeto acadêmico desenvolvido com o objetivo de auxiliar usuários no controle e organização de suas finanças pessoais.
+A proposta do sistema é facilitar a tomada de decisões relacionadas aos preços dos produtos, permitindo uma visão mais organizada das informações financeiras do negócio.
 
-A aplicação foi pensada para permitir o registro e acompanhamento de receitas e despesas, facilitando a visualização da situação financeira e ajudando o usuário a ter maior controle sobre seu dinheiro.
-
-O projeto também teve como finalidade aplicar, na prática, conceitos estudados durante a formação acadêmica relacionados ao desenvolvimento de software, organização de código, lógica de programação e versionamento.
+🌐 **Aplicação:** https://precifica-facil-br-app.netlify.app/
 
 ---
 
 ## 🎯 Objetivo do projeto
 
-O principal objetivo do projeto é desenvolver uma aplicação simples e intuitiva para auxiliar no controle financeiro pessoal.
+O principal objetivo do Precifica Fácil é desenvolver uma ferramenta que facilite o processo de precificação e organização financeira de pequenos negócios.
 
-A proposta é permitir que o usuário consiga:
+A aplicação foi criada pensando em empreendedores que precisam controlar seus produtos, custos, preços e informações financeiras de maneira mais simples e organizada.
 
-- Registrar receitas;
-- Registrar despesas;
-- Organizar informações financeiras;
-- Acompanhar entradas e saídas;
-- Visualizar sua situação financeira;
-- Identificar possíveis gastos excessivos;
-- Ter uma visão mais organizada de suas finanças.
-
-Além do objetivo funcional, o projeto também busca colocar em prática conhecimentos de desenvolvimento de software adquiridos durante o curso.
+Além de solucionar um problema prático, o projeto teve como objetivo acadêmico aplicar conhecimentos de desenvolvimento de software, organização de código, banco de dados, testes, versionamento e desenvolvimento de aplicações web.
 
 ---
 
 ## 💡 Problema abordado
 
-Muitas pessoas possuem dificuldade para organizar suas receitas e despesas e acabam não tendo uma visão clara de como estão utilizando seu dinheiro.
+A definição do preço de venda de um produto pode ser uma dificuldade para pequenos empreendedores.
 
-O projeto busca solucionar esse problema por meio de uma aplicação que centraliza as informações financeiras em um único lugar, tornando o acompanhamento mais simples e organizado.
+Sem uma organização adequada dos custos e das informações financeiras, existe o risco de estabelecer preços que não gerem uma margem de lucro adequada ou que não cubram corretamente os custos envolvidos.
 
-Dessa forma, o usuário pode ter maior clareza sobre seus ganhos, seus gastos e seu planejamento financeiro.
+O Precifica Fácil busca facilitar esse processo, centralizando informações importantes em uma aplicação web e permitindo que o usuário tenha uma visão mais organizada de seus produtos e finanças.
 
 ---
 
-## ⚙️ Funcionalidades
+## 🚀 Funcionalidades
 
-Entre as principais funcionalidades planejadas para a aplicação estão:
+Entre as principais funcionalidades presentes no projeto estão:
 
-- Cadastro de receitas;
-- Cadastro de despesas;
-- Organização das movimentações financeiras;
-- Consulta dos registros;
-- Visualização do saldo;
-- Acompanhamento das entradas e saídas;
-- Interface simples e intuitiva.
+- 📦 Cadastro e gerenciamento de produtos;
+- 💰 Recursos relacionados à precificação;
+- 📊 Dashboard para acompanhamento das informações;
+- 💵 Controle de fluxo de caixa;
+- 📈 Geração e visualização de relatórios;
+- 📋 Planilha inteligente para organização de informações;
+- 👤 Gerenciamento de perfil;
+- 🤖 Assistente com recursos de inteligência artificial;
+- 💳 Área relacionada aos planos e preços da aplicação;
+- 🌓 Interface com suporte a diferentes temas;
+- 📱 Interface desenvolvida para proporcionar uma experiência intuitiva ao usuário.
 
 ---
 
 ## 🛠️ Tecnologias utilizadas
 
-Durante o desenvolvimento do projeto foram utilizados conceitos e ferramentas relacionados ao desenvolvimento de aplicações web.
+### Front-end
 
-### HTML
+- **React** — utilizado para construção da interface da aplicação;
+- **TypeScript** — utilizado para desenvolvimento com tipagem estática;
+- **Vite** — utilizado como ferramenta de desenvolvimento e build;
+- **Tailwind CSS / componentes de interface** — utilizados na construção e estilização da interface;
+- **React Router / Wouter** — utilizado para gerenciamento da navegação entre páginas.
 
-Utilizado para estruturar os elementos e conteúdos das páginas da aplicação.
+### Back-end
 
-### CSS
+- **Node.js** — utilizado na execução do servidor;
+- **TypeScript** — utilizado também na implementação do back-end;
+- **tRPC** — utilizado para comunicação entre front-end e back-end com segurança de tipos.
 
-Utilizado para definir a aparência, organização visual e apresentação da interface.
+### Banco de dados
 
-### JavaScript
+- **Drizzle ORM** — utilizado para trabalhar com o banco de dados e estruturar as operações relacionadas aos dados;
+- **Drizzle Kit** — utilizado para gerenciamento do schema e migrações do banco de dados.
 
-Utilizado para implementar a lógica da aplicação e proporcionar interatividade ao sistema.
+### Testes
 
-### Git
-
-Utilizado para realizar o controle de versão do projeto, permitindo registrar alterações realizadas durante o desenvolvimento.
-
-### GitHub
-
-Utilizado para armazenar o código-fonte do projeto em um repositório remoto e facilitar sua organização e acompanhamento.
-
----
-
-## 📚 O que foi aprendido
-
-O desenvolvimento deste projeto proporcionou diversos aprendizados importantes para a formação em desenvolvimento de software.
-
-Entre os principais conhecimentos consolidados estão:
-
-### Desenvolvimento de aplicações
-
-Foi possível compreender melhor como organizar uma aplicação e dividir suas funcionalidades de forma estruturada.
-
-### Lógica de programação
-
-O projeto permitiu aplicar conceitos de lógica de programação na criação das funcionalidades e no tratamento das informações inseridas pelo usuário.
-
-### Desenvolvimento web
-
-Foi possível praticar a criação de interfaces utilizando HTML, CSS e JavaScript, além de compreender melhor a relação entre estrutura, estilo e comportamento de uma aplicação.
-
-### Organização do código
-
-Durante o desenvolvimento, foi possível perceber a importância de manter o código organizado e estruturado, facilitando futuras alterações e manutenção do projeto.
+- **Vitest** — utilizado para criação e execução de testes automatizados.
 
 ### Controle de versão
 
-O uso do Git possibilitou compreender na prática como registrar alterações, criar versões do projeto e acompanhar sua evolução.
+- **Git** — utilizado para controle de versão do código;
+- **GitHub** — utilizado para armazenamento e gerenciamento do repositório do projeto.
 
-### GitHub
+### Hospedagem
 
-A utilização do GitHub permitiu aprender como publicar e organizar um projeto em um repositório remoto, facilitando seu compartilhamento e apresentação.
-
-### Documentação
-
-Outro aprendizado importante foi compreender a importância da documentação de um projeto.
-
-Um código sozinho pode ser difícil de compreender. Por isso, o README tem a função de apresentar o projeto, explicar seu objetivo, suas tecnologias e os principais aprendizados obtidos durante seu desenvolvimento.
-
----
-
-## 🚀 Como executar o projeto
-
-Para executar o projeto localmente, é necessário possuir um navegador de internet e, caso o projeto esteja utilizando JavaScript em um ambiente de desenvolvimento, um editor de código como o Visual Studio Code.
-
-Após baixar ou clonar o projeto, os arquivos podem ser abertos no editor de código e executados localmente.
+- **Netlify** — utilizado para publicação da aplicação web.
 
 ---
 
 ## 📁 Estrutura do projeto
 
-A organização básica do projeto pode ser dividida em:
+A aplicação está organizada em diferentes diretórios, separando responsabilidades entre as partes do sistema.
 
 ```text
-sistema-gestao-financeira/
+precifica-facil/
 │
-├── index.html
-├── style.css
-├── script.js
-└── README.md
+├── client/          # Aplicação front-end
+│
+├── server/          # Aplicação back-end
+│
+├── shared/          # Código compartilhado entre front-end e back-end
+│
+├── drizzle/         # Schema e migrações do banco de dados
+│
+├── patches/         # Correções e ajustes de dependências
+│
+├── package.json     # Dependências e scripts do projeto
+├── tsconfig.json    # Configurações do TypeScript
+├── vite.config.ts   # Configurações do Vite
+├── vitest.config.ts # Configurações dos testes
+└── README.md        # Documentação do projeto
